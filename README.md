@@ -3,7 +3,6 @@
 ![Flask](https://img.shields.io/badge/built%20with-Flask-blue.svg)
 ![PostgreSQL](https://img.shields.io/badge/database-PostgreSQL-informational)
 ![Status](https://img.shields.io/badge/status-ready--to--submit-brightgreen)
-![License](https://img.shields.io/badge/license-MIT-blue)
 
 > This repository contains my solution for the **Backend Engineering Intern Case Study** for a B2B Inventory Management SaaS platform: **StockFlow**.
 
