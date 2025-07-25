@@ -91,7 +91,7 @@ Example:
 ## 📸 Screenshots
 
 ### ✅ Low-Stock Alert Response
-![Low Stock JSON](screenshots/low-stock-response.png)
+![Low Stock JSON](low-stock-response.png.png)
 
 ### ✅ ERD Schema
 ![ERD Schema](screenshotserd-diagram.png.png)
