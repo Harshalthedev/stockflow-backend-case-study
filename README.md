@@ -1,162 +1,121 @@
-# 📦 StockFlow — Backend Engineering Case Study
+# 📦 StockFlow Backend — Inventory Alert System
 
-![Flask](https://img.shields.io/badge/built%20with-Flask-blue.svg)
-![PostgreSQL](https://img.shields.io/badge/database-PostgreSQL-informational)
-![Status](https://img.shields.io/badge/status-ready--to--submit-brightgreen)
+This is a take-home case study for a Backend Engineering Internship. It demonstrates a simple inventory tracking API for a B2B SaaS company (StockFlow), including:
 
-> This repository contains my solution for the **Backend Engineering Intern Case Study** for a B2B Inventory Management SaaS platform: **StockFlow**.
-
----
-
-## 🚀 Project Overview
-
-StockFlow is an internal backend system for managing:
-- Inventory across multiple warehouses
-- Supplier relationships
-- Product bundles
-- Low-stock alerts
-
-The case study is divided into 3 key parts:
-1. Code Review & Debugging
-2. Database Design
-3. Low-Stock Alert API Implementation
+- Product management
+- Inventory tracking
+- Low-stock alert system with real-time insights
 
 ---
 
-## 🧩 Part 1: Code Review & Fixes
-
-- Reviewed a broken `POST /api/products` endpoint
-- Identified bugs and business logic flaws
-- Implemented fixes for:
-  - SKU uniqueness
-  - Safe Decimal pricing
-  - Transaction handling
-  - Field validation
-
-> ✅ Full implementation in `app/routes.py`  
-> 🧠 Reasoning in `case_study_report.md`
+## 🚀 Tech Stack
+- Python 3.11
+- Flask
+- SQLAlchemy
+- SQLite (default; easy to swap with PostgreSQL)
 
 ---
 
-## 🗃️ Part 2: Database Schema
+## 🏁 Getting Started
 
-Key entities:
-- `Products`, `Warehouses`, `Inventory`
-- `Suppliers`, `InventoryChanges`, `ProductBundles`
-
-Implemented as normalized schema in `schema.sql` with:
-- Foreign keys
-- Composite primary keys
-- Many-to-many relationships
-- Change tracking for alerts
-
----
-
-## 🔔 Part 3: Low-Stock Alert API
-
-### Endpoint
-
-```http
-GET /api/companies/{company_id}/alerts/low-stock
+### 1. Clone the repo
+```bash
+git clone https://github.com/Harshalthedev/stockflow-backend-case-study.git
+cd stockflow-backend-case-study
 ```
 
-### Returns:
+### 2. Set up a virtual environment
+```bash
+python -m venv venv
+venv\Scripts\activate  # On Windows
+```
 
+### 3. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Initialize the database
+```bash
+python init_db.py
+python seed_low_stock.py
+```
+
+### 5. Run the app
+```bash
+python run.py
+```
+App will be available at:
+```
+http://127.0.0.1:5000
+```
+
+---
+
+## 🔧 API Endpoints
+
+### ➕ POST `/api/products`
+Create a new product and assign inventory.
+
+```json
+{
+  "name": "Widget A",
+  "sku": "WID-001",
+  "price": 49.99,
+  "warehouse_id": 1,
+  "initial_quantity": 100
+}
+```
+
+### 🚨 GET `/api/companies/<company_id>/alerts/low-stock`
+Returns low-stock alerts for recent sales.
+
+Example:
 ```json
 {
   "alerts": [
     {
-      "product_id": 123,
+      "product_id": 1,
       "product_name": "Widget A",
       "sku": "WID-001",
-      "warehouse_id": 456,
-      "warehouse_name": "Main Warehouse",
-      "current_stock": 5,
-      "threshold": 20,
-      "days_until_stockout": 12,
-      "supplier": {
-        "id": 789,
-        "name": "Supplier Corp",
-        "contact_email": "orders@supplier.com"
-      }
+      "current_stock": 10,
+      "threshold": 50,
+      "days_until_stockout": 6
     }
-  ],
-  "total_alerts": 1
+  ]
 }
-```
-
-- ✅ Filters for products with recent sales
-- ✅ Shows supplier contact info
-- ✅ Calculates `days_until_stockout` based on 30-day average sales
-
----
-
-## 🛠 Setup & Run Locally
-
-```bash
-# Clone repo
-git clone https://github.com/yourusername/stockflow-case-study.git
-cd stockflow-case-study
-
-# Create virtual environment
-python3 -m venv venv
-source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run Flask app
-python run.py
 ```
 
 ---
 
 ## 📸 Screenshots
 
-> Replace these with your own if needed
-
-### ✅ Low Stock Alert Response
+### ✅ Low-Stock Alert Response
 ![Low Stock JSON](screenshots/low-stock-response.png)
 
 ### ✅ ERD Schema
-![ERD Schema](screenshotserd-diagram.png)
+![ERD Schema](screenshotserd-diagram.png.png)
 
 ---
 
-## 📂 Project Structure
-
-```
-stockflow-case-study/
-├── app/
-│   ├── __init__.py
-│   ├── models.py
-│   └── routes.py
-├── schema.sql
-├── run.py
-├── requirements.txt
-├── case_study_report.md
-└── README.md
-```
+## 🧼 Cleanup Suggestions
+- Removed circular imports
+- Removed unused SQL scripts
+- Modular file structure
 
 ---
 
-## 📌 Assumptions Made
-
-- “Recent sales activity” means sales in the past 30 days
-- All thresholds are stored in the product table
-- Days until stockout is estimated using average daily sales
-
-See more in `case_study_report.md`
+## 📬 Submission
+This repo is ready to submit via GitHub:
+> 🔗 https://github.com/Harshalthedev/stockflow-backend-case-study
 
 ---
 
-## 📞 Contact
+## 🙋‍♂️ Author
+**Harshal** — aspiring backend engineer.
 
-Made with ❤️ by [Your Name]  
-[GitHub](https://github.com/Harshalthedev) | [LinkedIn](https://linkedin.com/in/harshal-thakare-404835257/)
+📫 [GitHub](https://github.com/Harshalthedev) | [LinkedIn](https://linkedin.com/in/your-profile)
 
 ---
 
-## 🧪 License
-
-This project is licensed under the MIT License.
+## ✅ Status: Complete & Ready for Review ✅
